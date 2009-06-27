@@ -1,0 +1,60 @@
+<?php
+// $Id$
+
+/**
+ * Implementation of hook_menu().
+ */
+function ajax_markup_menu() {
+  $items = array();
+  $items['ajax-markup'] = array(
+    'page callback' => 'ajax_markup',
+    'access callback' => 'ajax_markup_access',
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function ajax_markup_perm() {
+  return array('access ajax markup');
+}
+
+/**
+ * Check ajax markup access.
+ */
+function ajax_markup_access() {
+  return user_access('access ajax markup') && isset($_POST['token']) && drupal_valid_token($_POST['token'], 'ajax-markup');
+}
+
+/**
+ * Create markup. Process posted input with posted format and return the result.
+ * Access to supplied input format is further checked by check_markup()
+ */
+function ajax_markup() {
+  $format = (int) isset($_POST['format']) ? $_POST['format'] : FILTER_FORMAT_DEFAULT;
+  $output = isset($_POST['input']) ? check_markup($_POST['input'], $format, TRUE) : '';
+  drupal_json(array('output' => $output));
+  exit();
+}
+
+/**
+ * Load API files and settings.
+ */
+function ajax_markup_on() {
+  static $state;
+  if (isset($state)) {
+    return $state;
+  }
+  if (!user_access('access ajax markup')) {
+    return $state = FALSE;
+  }
+  drupal_add_js(drupal_get_path('module', 'ajax_markup') . '/ajax_markup.js');
+  $settings['ajaxMarkup'] = array(
+    'url' => url('ajax-markup'),
+    'token' => drupal_get_token('ajax-markup'),
+  );
+  drupal_add_js($settings, 'setting');
+  return $state = TRUE;
+}

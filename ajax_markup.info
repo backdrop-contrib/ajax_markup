@@ -1,0 +1,4 @@
+; $Id$
+name = "Ajax markup"
+description = "API for generating filtered markup using ajax."
+core = "6.x"
