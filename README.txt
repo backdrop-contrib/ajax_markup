@@ -1,7 +1,7 @@
 // $Id$
 
 - Ajax markup:
-Provides an API to get filtered content by ajax.
+Provides an API for generating filtered markup using ajax.
 
 - INSTALL:
 Just enable it at module administration page.
@@ -13,9 +13,9 @@ if (module_invoke('ajax_markup', 'on')) {
   drupal_add_js(YOUR_SCRIPT.js);
 }
 
-2) Inside YOUR_SCRIPT.js call $.ajaxMarkup.get
+2) Inside YOUR_SCRIPT.js call $.ajaxMarkup
 
-$.ajaxMarkup.get(INPUT, INPUT_FORMAT, CALLBACK);
+$.ajaxMarkup(INPUT, INPUT_FORMAT, CALLBACK);
 
 function CALLBACK(OUTPUT, SUCCESS, REQUEST) {
   if (SUCCESS) $('div#preview').html(OUTPUT);
@@ -32,7 +32,7 @@ REQUEST: XmlHttpRequest. Not available when the OUTPUT is retrieved from the cac
 - ALSO:
 API provides a function that tries to get the INPUT_FORMAT of a textarea.
 
-$('#edit-body').inputFormat(); //returns 0 (the default format) when there is no input format for the element.
+$.ajaxMarkup.getFormat('#edit-body'); //returns 0 (the default format) when there is no input format for the element.
 
 - ACCESS:
 Users must have "access ajax markup" permission.
