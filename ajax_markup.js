@@ -1,7 +1,7 @@
 // $Id$
 (function($) {
 
-//get markup after processing the input by the format..
+//get markup after processing the input by the format.
 //The "calblack" is called with 3 parameters: output, status(true|false), xmlHttpRequest
 $.ajaxMarkup = function(input, format, callback) {
   //check if callback exists.
@@ -16,7 +16,7 @@ $.ajaxMarkup = function(input, format, callback) {
   //check cache
   var hash = $.ajaxMarkup.hash, cache = $.ajaxMarkup.cache;
   var cid = format + ':' + hash(input);
-  if (typeof cache[cid] != 'undefined') {
+  if (cache[cid] !== undefined) {
     return callback(cache[cid], true);
   }
   //check required parameters for ajax request.
