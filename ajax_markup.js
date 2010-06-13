@@ -2,7 +2,7 @@
 (function($) {
 
 //get markup after processing the input by the format.
-//The "calblack" is called with 3 parameters: output, status(true|false), xmlHttpRequest
+//The "callback" is called with 3 parameters: output, status(true|false), xmlHttpRequest
 $.ajaxMarkup = function(input, format, callback) {
   //check if callback exists.
   if (!$.isFunction(callback)) {
@@ -61,11 +61,8 @@ $.ajaxMarkup.getFormat = function(selector) {
     return 0;
   }
   var i, format = 0, name = T.name || '';
-  if (name == 'body' || name == 'teaser_js' || name == 'comment') {//node body, teaser and comment fields
-    format = $('input[name=format]:checked', T.form).val() || 0;
-  }
-  else if ((i = name.indexOf('[value]')) > 0) {//cck fields
-    format = $('input[name="'+ name.substring(0, i) +'[format]"]:checked', T.form).val() || 0;
+  if ((i = name.indexOf('[value]')) > 0) {//fields
+    format = $(T.form.elements[name.substring(0, i) + '[format]']).val() || 0;
   }
   return format;
 };

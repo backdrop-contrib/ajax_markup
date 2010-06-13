@@ -2,7 +2,7 @@
 // $Id$
 
 /**
- * Implementation of hook_menu().
+ * Implements hook_menu().
  */
 function ajax_markup_menu() {
   $items = array();
@@ -15,32 +15,47 @@ function ajax_markup_menu() {
 }
 
 /**
- * Implementation of hook_perm().
+ * Implements hook_permission().
  */
-function ajax_markup_perm() {
-  return array('access ajax markup');
+function ajax_markup_permission() {
+  return array(
+    'access ajax markup' => array(
+      'title' => t('Access ajax markup'),
+    ),
+  );
 }
 
 /**
- * Check ajax markup access.
+ * Checks ajax markup access.
  */
 function ajax_markup_access() {
   return user_access('access ajax markup') && isset($_POST['token']) && drupal_valid_token($_POST['token'], 'ajax-markup');
 }
 
 /**
- * Create markup. Process posted input with posted format and return the result.
- * Access to supplied input format is further checked by check_markup()
+ * Creates markup by processing posted input with posted format.
  */
 function ajax_markup() {
-  $format = (int) isset($_POST['format']) ? $_POST['format'] : FILTER_FORMAT_DEFAULT;
-  $output = isset($_POST['input']) ? check_markup($_POST['input'], $format, TRUE) : '';
-  drupal_json(array('output' => $output));
+  $output = '';
+  if (isset($_POST['input']) && is_string($_POST['input'])) {
+    if (!empty($_POST['format'])) {
+      if ($format = filter_format_load($_POST['format'])) {
+        if (filter_access($format, $GLOBALS['user'])) {
+          $format_id = $format->format;
+        }
+      }
+    }
+    if (!isset($format_id)) {
+      $format_id = filter_fallback_format();//do not use filter_default_format($user)
+    }
+    $output = check_markup($_POST['input'], $format_id);
+  }
+  drupal_json_output(array('output' => $output));//sets application/json header
   exit();
 }
 
 /**
- * Load API files and settings.
+ * Loads API files and settings.
  */
 function ajax_markup_on() {
   static $state;
