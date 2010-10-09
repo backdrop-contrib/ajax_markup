@@ -35,7 +35,7 @@ $.ajaxMarkup = function(input, format, callback) {
       status = true;
     },
     error: function(request) {
-      output = Drupal.ahahError(request, this.url);
+      output = Drupal.ajaxError(request, this.url);
     },
     complete: function(request) {
       callback.call(this, output, status, request);
