@@ -46,11 +46,11 @@ function ajax_markup() {
       }
     }
     if (!isset($format_id)) {
-      $format_id = filter_fallback_format();//do not use filter_default_format($user)
+      $format_id = filter_fallback_format();
     }
     $output = check_markup($_POST['input'], $format_id);
   }
-  drupal_json_output(array('output' => $output));//sets application/json header
+  drupal_json_output(array('output' => $output));
   exit();
 }
 
