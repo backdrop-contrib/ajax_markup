@@ -1,4 +1,3 @@
-// $Id$
 
 - Ajax markup:
 Provides an API for generating filtered markup using ajax.

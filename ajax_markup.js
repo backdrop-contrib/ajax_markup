@@ -1,4 +1,3 @@
-// $Id$
 (function($) {
 
 //get markup after processing the input by the format.
