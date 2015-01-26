@@ -20,7 +20,7 @@ $.ajaxMarkup = function(input, format, callback) {
   }
   //check required parameters for ajax request.
   if (!$.ajaxMarkup.url || !$.ajaxMarkup.token) {
-    return callback(Drupal.t('Some required parameters are missing for an ajax request.'), false);
+    return callback(Backdrop.t('Some required parameters are missing for an ajax request.'), false);
   }
   //request filtered output.
   var output = '', status = false;
@@ -68,7 +68,7 @@ $.ajaxMarkup.getFormat = function(selector) {
 
 //set dynamic parameters(url & token).
 $(document).ready(function() {
-  $.extend($.ajaxMarkup, Drupal.settings.ajaxMarkup);
+  $.extend($.ajaxMarkup, Backdrop.settings.ajaxMarkup);
 });
 
 })(jQuery);

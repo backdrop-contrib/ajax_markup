@@ -28,7 +28,7 @@ function ajax_markup_permission() {
  * Checks ajax markup access.
  */
 function ajax_markup_access() {
-  return user_access('access ajax markup') && isset($_POST['token']) && drupal_valid_token($_POST['token'], 'ajax-markup', TRUE);
+  return user_access('access ajax markup') && isset($_POST['token']) && backdrop_valid_token($_POST['token'], 'ajax-markup', TRUE);
 }
 
 /**
@@ -49,7 +49,7 @@ function ajax_markup() {
     }
     $output = check_markup($_POST['input'], $format_id);
   }
-  drupal_json_output(array('output' => $output));
+  backdrop_json_output(array('output' => $output));
   exit();
 }
 
@@ -64,11 +64,11 @@ function ajax_markup_on() {
   if (!user_access('access ajax markup')) {
     return $state = FALSE;
   }
-  drupal_add_js(drupal_get_path('module', 'ajax_markup') . '/ajax_markup.js');
+  backdrop_add_js(drupal_get_path('module', 'ajax_markup') . '/ajax_markup.js');
   $settings['ajaxMarkup'] = array(
     'url' => url('ajax-markup'),
-    'token' => drupal_get_token('ajax-markup'),
+    'token' => backdrop_get_token('ajax-markup'),
   );
-  drupal_add_js($settings, 'setting');
+  backdrop_add_js($settings, 'setting');
   return $state = TRUE;
 }

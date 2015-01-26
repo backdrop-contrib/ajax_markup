@@ -1,4 +1,4 @@
 name = "Ajax markup"
 description = "API for generating filtered markup using ajax."
-core = "7.x"
+backdrop = 1.x
 package = "Content authoring"
