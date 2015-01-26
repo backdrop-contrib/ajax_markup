@@ -14,20 +14,20 @@ USE
 ---
 
 1. Load the API by calling ajax_markup_on() at server side.
-
+```
 if (module_invoke('ajax_markup', 'on')) {
   drupal_add_js(YOUR_SCRIPT.js);
 }
-
+```
 2. Inside YOUR_SCRIPT.js call $.ajaxMarkup
-
+```
 $.ajaxMarkup(INPUT, INPUT_FORMAT, CALLBACK);
 
 function CALLBACK(OUTPUT, SUCCESS, REQUEST) {
   if (SUCCESS) $('div#preview').html(OUTPUT);
   else alert(OUTPUT);
 }
-
+```
 INPUT: String of which you want to get a filtered version.
 INPUT_FORMAT: Integer representing one of the drupal input formats. Provide 0 for the default.
 CALLBACK: Function to send the output after the request.
@@ -37,8 +37,9 @@ REQUEST: XmlHttpRequest. Not available when the OUTPUT is retrieved from the cac
 
 ALSO:
 API provides a function that tries to get the INPUT_FORMAT of a textarea.
-
+```
 $.ajaxMarkup.getFormat('#edit-body'); //returns 0 (the default format) when there is no input format for the element.
+```
 
 ACCESS
 ------
