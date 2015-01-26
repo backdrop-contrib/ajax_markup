@@ -1,13 +1,14 @@
 Ajax Markup
 ===========
 
-Provides an API for generating filtered markup using ajax. It supports BBCode, Markdown, Textile, HTML, PHP, and any other markup system provided as a Backdrop module. It provides an ajaxified version of check_markup(). Ajax Markup also fully integrated into BUEditor.
+Provides an API for generating filtered markup using ajax. It supports BBCode, Markdown, Textile, HTML, PHP, and any other markup system provided as a Backdrop module. It provides an ajaxified version of check_markup(). Ajax Markup is also fully integrated into BUEditor.
 
 INSTALLATION
 ------------
 
 - Install this module using the official Backdrop CMS instructions at
   https://backdropcms.org/guide/modules
+- To use with BUEditor first enable ajax_markup before enabling BUEditor in order to have the Preview button to appear automatically. Otherwise manually add the button code to BUEditor: `js: E.prvAjax();`
 
 USE
 ---
