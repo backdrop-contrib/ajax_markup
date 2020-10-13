@@ -16,7 +16,7 @@ USE
 1. Load the API by calling ajax_markup_on() at server side.
 ```
 if (module_invoke('ajax_markup', 'on')) {
-  drupal_add_js(YOUR_SCRIPT.js);
+  backdrop_add_js(YOUR_SCRIPT.js);
 }
 ```
 2. Inside YOUR_SCRIPT.js call $.ajaxMarkup
