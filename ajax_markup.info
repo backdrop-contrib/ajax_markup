@@ -1,4 +1,5 @@
 name = "Ajax markup"
+type = "module"
 description = "API for generating filtered markup using ajax."
 backdrop = 1.x
 package = "Content authoring"
