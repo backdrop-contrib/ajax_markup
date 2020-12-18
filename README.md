@@ -56,7 +56,7 @@ complete text.
 Current Maintainers
 -------------------
 
-This module is currently seeking maintainers.
+Maintained by [Alan Mels](https://github.com/alanmels)
 
 Credits
 -------
