@@ -64,7 +64,7 @@ function ajax_markup_on() {
   if (!user_access('access ajax markup')) {
     return $state = FALSE;
   }
-  backdrop_add_js(drupal_get_path('module', 'ajax_markup') . '/ajax_markup.js');
+  backdrop_add_js(backdrop_get_path('module', 'ajax_markup') . '/ajax_markup.js');
   $settings['ajaxMarkup'] = array(
     'url' => url('ajax-markup'),
     'token' => backdrop_get_token('ajax-markup'),
