@@ -29,7 +29,7 @@ function CALLBACK(OUTPUT, SUCCESS, REQUEST) {
 }
 ```
 INPUT: String of which you want to get a filtered version.
-INPUT_FORMAT: Integer representing one of the drupal input formats. Provide 0 for the default.
+INPUT_FORMAT: Integer representing one of the Backdrop input formats. Provide 0 for the default.
 CALLBACK: Function to send the output after the request.
 OUTPUT: String that is the filtered INPUT. Content depends on the INPUT_FORMAT and SUCCESS state.
 SUCCESS: Boolean representing the status of the request.

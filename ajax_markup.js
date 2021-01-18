@@ -34,7 +34,7 @@ $.ajaxMarkup = function(input, format, callback) {
       status = true;
     },
     error: function(request) {
-      output = Drupal.ajaxError(request, this.url);
+      output = Backdrop.ajaxError(request, this.url);
     },
     complete: function(request) {
       callback.call(this, output, status, request);
